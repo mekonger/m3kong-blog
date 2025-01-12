@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -31,5 +31,9 @@ public class AccountEntity {
   private Date createTime;
 
   @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Token> tokens;
+  private Set<TokenEntity> tokens;
+
+  @ManyToMany(mappedBy = "accounts")
+  private Set<PermissionEntity> permissions;
+
 }

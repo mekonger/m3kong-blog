@@ -1,5 +1,6 @@
 package com.m3kong.blog.infrastructure.persistence.entity;
 
+import com.m3kong.blog.domain.enums.AccessRuleType;
 import com.m3kong.blog.domain.enums.StatusType;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,28 +13,29 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(schema = "auth", name = "token")
-public class Token {
+@Table(schema = "posting", name = "category_localization")
+public class CategoryLocalizationEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  private String accessToken;
+  private String content;
 
-  private String refreshToken;
-
-  private String saltKey;
-
-  private Date expiredTime;
+  private String languageCode;
 
   @Convert(converter = StatusConverter.class)
   private StatusType status;
 
+  @Convert(converter = AccessRuleConverter.class)
+  private AccessRuleType accessRule;
+
   private Date createTime;
 
-  @ManyToOne(cascade = CascadeType.ALL, optional = false)
-  @JoinColumn(name = "accountId", referencedColumnName = "id", nullable = false)
+  private Date modifyTime;
+
+  @ManyToOne
+  @JoinColumn(columnDefinition = "category_id", referencedColumnName = "id", nullable = false)
   @OnDelete(action = OnDeleteAction.CASCADE)
-  private AccountEntity account;
+  private CategoryEntity category;
 }
