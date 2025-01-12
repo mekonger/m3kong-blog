@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: m3kong-blog
+  profiles:
+    active: dev
