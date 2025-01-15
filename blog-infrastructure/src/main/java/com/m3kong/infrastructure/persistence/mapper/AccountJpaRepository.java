@@ -1,6 +1,6 @@
 package com.m3kong.infrastructure.persistence.mapper;
 
-import com.m3kong.blog.infrastructure.persistence.entity.AccountEntity;
+import com.m3kong.infrastructure.persistence.model.AccountEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;

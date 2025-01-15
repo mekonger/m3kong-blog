@@ -1,6 +1,6 @@
 package com.m3kong.infrastructure.persistence.model;
 
-import com.m3kong.blog.domain.enums.StatusType;
+import com.m3kong.domain.model.enums.StatusType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +31,7 @@ public class AccountEntity {
   private Date createTime;
 
   @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<TokenEntity> tokens;
+  private Set<KeyTokenEntity> tokens;
 
   @ManyToMany(mappedBy = "accounts")
   private Set<PermissionEntity> permissions;
