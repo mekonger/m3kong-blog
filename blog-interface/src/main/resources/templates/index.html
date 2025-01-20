@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>M3Kong Blog</title>
+    <link th:href = "@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+    <div class = "container">
+        <div class = "row">
+            <table class = "table table-responsive table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th> Article ID</th>
+                    <th> Title</th>
+                    <th> Summary</th>
+                    <th> Create At</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article : ${articles}">
+                    <td th:text="${article.id}"></td>
+                    <td th:text="${article.title}"></td>
+                    <td th:text="${article.shortDesc}"></td>
+                    <td th:text="${article.publishAt}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

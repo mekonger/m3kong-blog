@@ -1,6 +1,6 @@
 package com.m3kong.infrastructure.persistence.model;
 
-import com.m3kong.blog.domain.enums.StatusType;
+import com.m3kong.domain.model.enums.StatusType;
 import jakarta.persistence.AttributeConverter;
 
 public class StatusConverter implements AttributeConverter<StatusType, Integer> {

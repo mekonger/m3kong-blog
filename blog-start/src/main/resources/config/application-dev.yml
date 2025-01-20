@@ -7,13 +7,23 @@ server:
     accept-count: 20000
 
 spring:
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  thymeleaf:
+    enabled: true
+    suffix: .html
+    prefix: templates/
+    check-template: true
+    check-template-location: true
+    cache: false
   application:
     name: m3kong.com
   # database
   r2dbc:
     url: r2dbc:postgresql://127.0.0.1:6868/m3kong_blog
     username: m3kong_admin
-    password: changeme
+    password: M3Kong@2025#6868
     pool:
       enabled: true
       initial-size: 50

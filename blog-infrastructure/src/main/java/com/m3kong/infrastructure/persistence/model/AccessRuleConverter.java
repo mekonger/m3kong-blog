@@ -1,6 +1,6 @@
 package com.m3kong.infrastructure.persistence.model;
 
-import com.m3kong.blog.domain.enums.AccessRuleType;
+import com.m3kong.domain.model.enums.AccessRuleType;
 import jakarta.persistence.AttributeConverter;
 
 public class AccessRuleConverter implements AttributeConverter<AccessRuleType, Integer> {
