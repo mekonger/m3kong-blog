@@ -1,0 +1,81 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+body {
+    font-family: "Lato", seriff;
+    background-color: #1d1d1d;
+    color: whitesmoke;
+    line-height: 1.6;
+    max-width: 1140px;
+    margin: auto;
+}
+
+header.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #1d1d1d;
+    color: whitesmoke;
+    z-index: 1000;
+    padding: 24px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header .logo a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+header .nav-menu ul {
+    display: flex;
+    list-style: none;
+}
+
+header .nav-menu ul li {
+    margin-left: 32px;
+}
+
+header .nav-menu ul li a {
+    text-decoration: none;
+    color: whitesmoke;
+    transition: color 0.3s ease;
+}
+
+header .nav-menu ul li a:hover,
+header .logo a:hover {
+    color: #f76300;
+    text-decoration: underline;
+}
+
+header .nav-menu ul li a:active,
+header .logo a:active {
+    color: #f76300;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+main section {
+    padding: 50px 0;
+    border-bottom: 1px solid #ccc;
+}

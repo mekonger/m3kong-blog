@@ -2,10 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>M3Kong Blog</title>
-    <link th:href = "@{/css/bootstrap.min.css}" rel="stylesheet">
+    <title>M3Kong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link th:href = "@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href = "@{/css/header.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <!--Static Header-->
+    <header class="sticky-header">
+        <div class="container">
+            <div class="logo"><a href="#">M3Kong</a></div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#menu2">Blog</a></li>
+                    <li><a href="#menu3">Learn code</a></li>
+                    <li><a href="#menu3">Life code</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="menu1">
+            <h1>Menu 1 Content</h1>
+            <p>Welcome to the Menu 1 section.</p>
+        </section>
+        <section id="menu2">
+            <h1>Menu 2 Content</h1>
+            <p>Welcome to the Menu 2 section.</p>
+        </section>
+        <section id="menu3">
+            <h1>Menu 3 Content</h1>
+            <p>Welcome to the Menu 3 section.</p>
+        </section>
+        <section id="menu4">
+            <h1>Menu 4 Content</h1>
+            <p>Welcome to the Menu 4 section.</p>
+        </section>
+    </main>
+
+
+
     <div class = "container">
         <div class = "row">
             <table class = "table table-responsive table-bordered table-striped">
