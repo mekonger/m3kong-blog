@@ -1,21 +1,20 @@
 package com.m3kong.infrastructure.persistence.model;
 
 import com.m3kong.domain.model.enums.StatusType;
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@Entity
 @Table(schema = "auth", name = "permission")
 public class PermissionEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   private String name;
@@ -24,17 +23,15 @@ public class PermissionEntity {
 
   private String code;
 
-  @Convert(converter = StatusConverter.class)
-  private StatusType status;
+  private int status;
+
+  public StatusType getStatus() {
+    return StatusType.values()[status];
+  }
+
+  public void setStatus(StatusType status) {
+    this.status = status.ordinal();
+  }
 
   private Date createTime;
-
-  @ManyToMany
-  @JoinTable(
-    name = "auth.account_permission",
-    joinColumns = @JoinColumn(name = "permission_id"),
-    inverseJoinColumns = @JoinColumn(name = "account_id")
-  )
-  private Set<AccountEntity> accounts;
-
 }

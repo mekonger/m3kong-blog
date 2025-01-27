@@ -2,7 +2,7 @@ package com.m3kong.infrastructure.persistence.mapper;
 
 import com.m3kong.domain.model.enums.StatusType;
 import com.m3kong.infrastructure.persistence.model.KeyTokenEntity;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;

@@ -2,36 +2,53 @@ package com.m3kong.infrastructure.persistence.model;
 
 import com.m3kong.domain.model.enums.AccessRuleType;
 import com.m3kong.domain.model.enums.StatusType;
-import jakarta.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
+@Builder
 @Table(schema = "posting", name = "category")
 public class CategoryEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   private String name;
 
-  @Convert(converter = StatusConverter.class)
-  private StatusType status;
+  private int status;
 
-  @Convert(converter = AccessRuleConverter.class)
-  private AccessRuleType accessRule;
+  public StatusType getStatus() {
+    return StatusType.values()[status];
+  }
+
+  public void setStatus(StatusType status) {
+    this.status = status.ordinal();
+  }
+
+  private int accessRule;
+
+  public AccessRuleType getAccessRule() {
+    return AccessRuleType.values()[accessRule];
+  }
+
+  public void setAccessRule(AccessRuleType accessRule) {
+    this.accessRule = accessRule.ordinal();
+  }
 
   private Date createTime;
 
   private Date modifyTime;
 
-  @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<CategoryLocalizationEntity> localizations;
+  private int displayOrder;
 
 }

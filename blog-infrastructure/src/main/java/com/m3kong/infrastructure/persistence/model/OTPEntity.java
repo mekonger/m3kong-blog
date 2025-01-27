@@ -1,19 +1,18 @@
 package com.m3kong.infrastructure.persistence.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@Entity
 @Table(schema = "auth", name = "otp")
 public class OTPEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   private String code;

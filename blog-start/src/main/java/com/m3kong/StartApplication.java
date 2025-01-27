@@ -5,11 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
 import java.util.Arrays;
 
 @EnableWebFlux
+@EnableR2dbcRepositories
 @SpringBootApplication
 public class StartApplication implements CommandLineRunner {
 

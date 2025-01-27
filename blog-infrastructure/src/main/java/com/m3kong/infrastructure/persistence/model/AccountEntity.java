@@ -1,22 +1,20 @@
 package com.m3kong.infrastructure.persistence.model;
 
 import com.m3kong.domain.model.enums.StatusType;
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-@Entity
 @Table(schema = "auth", name = "account")
 public class AccountEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
   private String hashPassword;
@@ -25,15 +23,15 @@ public class AccountEntity {
 
   private String email;
 
-  @Convert(converter = StatusConverter.class)
-  private StatusType status;
+  private int status;
+
+  public StatusType getStatus() {
+    return StatusType.values()[status];
+  }
+
+  public void setStatus(StatusType status) {
+    this.status = status.ordinal();
+  }
 
   private Date createTime;
-
-  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<KeyTokenEntity> tokens;
-
-  @ManyToMany(mappedBy = "accounts")
-  private Set<PermissionEntity> permissions;
-
 }

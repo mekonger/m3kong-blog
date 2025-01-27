@@ -1,37 +1,42 @@
 package com.m3kong.infrastructure.persistence.model;
 
 import com.m3kong.domain.model.enums.StatusType;
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
+@Builder
 @Table(schema = "posting", name = "category_localization")
 public class CategoryLocalizationEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   private String content;
 
   private String languageCode;
 
-  @Convert(converter = StatusConverter.class)
-  private StatusType status;
+  private int status;
+
+  public StatusType getStatus() {
+    return StatusType.values()[status];
+  }
+
+  public void setStatus(StatusType status) {
+    this.status = status.ordinal();
+  }
 
   private Date createTime;
 
   private Date modifyTime;
 
-  @ManyToOne
-  @JoinColumn(columnDefinition = "category_id", referencedColumnName = "id", nullable = false)
-  @OnDelete(action = OnDeleteAction.CASCADE)
-  private CategoryEntity category;
+  private Integer categoryId;
 }

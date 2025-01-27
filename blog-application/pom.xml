@@ -23,6 +23,11 @@
             <artifactId>blog-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.m3kong</groupId>
+            <artifactId>blog-infrastructure</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
