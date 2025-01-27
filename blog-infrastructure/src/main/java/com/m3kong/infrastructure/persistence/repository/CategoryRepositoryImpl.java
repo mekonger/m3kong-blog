@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -28,8 +28,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
   @Override
   public Flux<CategoryDto> getActiveCategoriesByOrder() {
-    return categoryJpaRepository.findByStatusOrderByDisplayOrderAsc(StatusType.Active)
-            .map((data) -> CategoryEntityToDto.convert(data, categoryLocalizationJpaRepository.findByCategoryId(data.getId()).collectList().block()));
+    return categoryJpaRepository.findByStatusOrderByDisplayOrderAsc(StatusType.Active.ordinal())
+            .flatMap(data -> categoryLocalizationJpaRepository.findByCategoryId(data.getId()).collectList()
+                    .map(localizations -> CategoryEntityToDto.convert(data, localizations)));
+//            .map((data) -> CategoryEntityToDto.convert(data, categoryLocalizationJpaRepository.findByCategoryId(data.getId()).collectList().block()));
   }
 
   @Override
@@ -48,8 +50,8 @@ public class CategoryRepositoryImpl implements CategoryRepository {
             .status(categoryDto.getStatusType().ordinal())
             .displayOrder(categoryDto.getDisplayOrder())
             .accessRule(categoryDto.getAccessRule().ordinal())
-            .createTime(new Date())
-            .modifyTime(new Date())
+            .createTime(LocalDateTime.now())
+            .modifyTime(LocalDateTime.now())
             .build();
 
 
@@ -73,7 +75,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     entity.setStatus(categoryDto.getStatus());
     entity.setDisplayOrder(categoryDto.getDisplayOrder());
     entity.setAccessRule(categoryDto.getAccessRule());
-    entity.setModifyTime(new Date());
+    entity.setModifyTime(LocalDateTime.now());
     categoryJpaRepository.save(entity);
 
     // save category localization entity

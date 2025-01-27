@@ -6,9 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -34,9 +35,9 @@ public class CategoryLocalizationEntity {
     this.status = status.ordinal();
   }
 
-  private Date createTime;
+  private LocalDateTime createTime;
 
-  private Date modifyTime;
+  private LocalDateTime modifyTime;
 
   private Integer categoryId;
 }

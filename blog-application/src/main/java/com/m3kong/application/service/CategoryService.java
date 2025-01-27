@@ -1,9 +1,9 @@
-package com.m3kong.interfaces.service;
+package com.m3kong.application.service;
 
 import com.m3kong.application.dto.CategoryResult;
 import reactor.core.publisher.Flux;
 
-public interface IndexService {
+public interface CategoryService {
 
   Flux<CategoryResult> getActiveCategoriesByOrder(String languageCode);
 }
