@@ -1,6 +1,6 @@
 package com.m3kong.interfaces.service.impl;
 
-import com.m3kong.application.dto.CategoryResult;
+import com.m3kong.application.model.dto.Category;
 import com.m3kong.application.service.CategoryService;
 import com.m3kong.interfaces.service.IndexService;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ public class IndexServiceImpl implements IndexService {
   final private CategoryService categoryService;
 
   @Override
-  public Flux<CategoryResult> getActiveCategoriesByOrder(String languageCode) {
-    return categoryService.getActiveCategoriesByOrder(languageCode);
+  public Flux<Category> getActiveCategoriesByOrder(String languageCode, Long version) {
+    return categoryService.getActiveCategoriesByOrder(languageCode, version);
   }
 }

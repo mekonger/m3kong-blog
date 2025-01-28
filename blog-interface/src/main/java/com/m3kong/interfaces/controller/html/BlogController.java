@@ -1,12 +1,13 @@
 package com.m3kong.interfaces.controller.html;
 
-import com.m3kong.application.dto.ArticleDto;
-import com.m3kong.application.dto.CategoryResult;
+import com.m3kong.application.model.dto.Article;
+import com.m3kong.application.model.dto.Category;
 import com.m3kong.application.service.ArticleService;
 import com.m3kong.interfaces.service.IndexService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,8 +25,9 @@ public class BlogController {
 
   @GetMapping("/")
   public Mono<String> home(Model model) {
-    Flux<ArticleDto> articleDtoFlux = articleService.getListArticles();
-    Flux<CategoryResult> categoryResultFlux = indexService.getActiveCategoriesByOrder("vi");
+    String version = "1";
+    Flux<Article> articleDtoFlux = articleService.getListArticles();
+    Flux<Category> categoryResultFlux = indexService.getActiveCategoriesByOrder("vi", version != null ? Long.parseLong(version) : null);
 
     // Combine two Flux using zip
     Mono<Map<String, Object>> combinedData = Mono.zip(articleDtoFlux.collectList(), categoryResultFlux.collectList())

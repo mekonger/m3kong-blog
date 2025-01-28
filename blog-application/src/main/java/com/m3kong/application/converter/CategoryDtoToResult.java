@@ -1,12 +1,12 @@
 package com.m3kong.application.converter;
 
-import com.m3kong.application.dto.CategoryResult;
-import com.m3kong.domain.model.dto.CategoryDto;
+import com.m3kong.application.Utils.SlugUtil;
+import com.m3kong.application.model.dto.Category;
 import com.m3kong.domain.model.dto.CategoryLocalizationDto;
 
 public class CategoryDtoToResult {
 
-  public static CategoryResult convert(CategoryDto categoryDto, String languageCode) {
+  public static Category convert(com.m3kong.domain.model.dto.CategoryDto categoryDto, String languageCode) {
     if (categoryDto == null || categoryDto.getLocalizations().isEmpty()) {
       return null;
     }
@@ -16,6 +16,6 @@ public class CategoryDtoToResult {
       return null;
     }
 
-    return new CategoryResult(categoryDto.getId(), categoryDto.getName(), categoryLocalizationDto.getContent(), categoryLocalizationDto.getLanguageCode());
+    return new Category(categoryDto.getId(), categoryDto.getName(), categoryLocalizationDto.getContent(), categoryLocalizationDto.getLanguageCode(), SlugUtil.toSlug(categoryDto.getName()));
   }
 }

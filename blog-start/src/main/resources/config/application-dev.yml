@@ -6,6 +6,11 @@ server:
       min-spare: 50
     accept-count: 20000
 
+# redisson
+redisson:
+  address: "redis://127.0.0.1:7979"
+  connectionPoolSize: 64
+
 spring:
   main:
     web-application-type: reactive
@@ -19,6 +24,11 @@ spring:
     cache: false
   application:
     name: m3kong.com
+  # Local cache - caffeine
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=10000,expireAfterWrite=10m
   # database
   r2dbc:
     url: r2dbc:postgresql://127.0.0.1:6868/m3kong_blog

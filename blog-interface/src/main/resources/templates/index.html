@@ -16,9 +16,9 @@
             <div class="logo"><a href="/">M3Kong</a></div>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="#menu2">Blog</a></li>
-                    <li><a href="#menu3">Learn code</a></li>
-                    <li><a href="#menu3">Life code</a></li>
+                    <li th:each="category : ${categories}">
+                        <a th:href="${category.slug}" th:text="${category.localizeName}">Blog</a>
+                    </li>
                 </ul>
             </nav>
         </div>
